@@ -51,7 +51,7 @@ function prepareTransaction(nodeId: string | undefined): Transaction | null {
 	// Step 3: Collect commission
 	const commission = tx.moveCall({
 		target: `${WALRUS_PKG}::staking::collect_commission`,
-		arguments: [tx.object(STAKING_OBJ), tx.object(nodeId), authenticated_obj as TransactionArgument],
+		arguments: [tx.object(STAKING_OBJ), tx.pure.address(nodeId), authenticated_obj as TransactionArgument],
 	});
 
 	// Step 4: Transfer commission to sender
